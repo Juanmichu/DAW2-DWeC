@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Manuel Serrano Perez" />
+    <title>Tarea 4 - DEWC03</title>
+</head>
+<body>
+<style>
+    body
+    {
+        text-align: center;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #mensaje
+    {
+        width: 45vw;
+        margin: 0 30px 30px 30px;
+    }
+    .cajaTexto
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .botones
+    {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    button
+    {
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 700;
+        box-shadow: 0 1px 5px #000;
+        border: 2px solid #0000007a;
+        cursor:pointer;
+        transition: .5s;
+    }
+    button:hover
+    {
+        transform: scale(1.025);
+        transition: .5s;
+    }
+</style>
+
+    <h1>Tarea 4 - DEWC03</h1>
+
+    <div class="cajaTexto">
+        <label for="mensaje">Introduzca mensaje a Encriptar/Desencriptar (solo letras)</label>
+        <input id="mensaje" type="text"/>
+    </div>
+    
+
+    <div class="botones">
+        <button id="encriptar">Encriptar</button>
+        <button id="limpiar_datos">Limpiar datos</button>
+        <button id="desencriptar">Desencriptar</button>
+    </div>
+
+    <div class="mensajes">
+        <h2>Mensaje encriptado/desencriptado</h2>
+        <p id="encriptaDesencripta"></p>
+    </div>
+<script>
+    //Declaramos la cadena pedida.
+    let abc = 'abcdefghijklmnopqrstuvwxyz';
+    var arrayAbc = [];
+    //Guardamos todas las letras de la cadena en un array de string. 
+    for(var j = 0; j < abc.length; j++)
+    {
+        arrayAbc.push(abc.charAt(j));
+    }
+    var character = '';
+    var mensaje = '';
+    var encriptado = [];
+    var desencriptado = [];
+    //Establecemos un par de listeners para capturar el "click" sobre cada botón. Capturamos ese evento onclick en base a la id de cada botón. 
+    document.querySelector('#encriptar').onclick = magia;
+    document.querySelector('#desencriptar').onclick = magia;
+    document.querySelector('#limpiar_datos').onclick = limpiar;
+
+    //Función para quitar acentos y otros caracteres.
+    const quitarAcentos = (str) => 
+    {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    } 
+
+    function magia(m)
+    {
+        var clickado = m.currentTarget.id;
+        
+        if (clickado == 'encriptar')
+        {
+            //Quitamos cualquier acento que pueda haber con la función que creamos más arriba.
+            console.log('Encriptar clickado');
+            mensaje = quitarAcentos(document.getElementById('mensaje').value);
+
+            var mueves = parseInt(prompt('Indique, del 1 al 26, cuántas posiciones usará su encriptación'));
+
+            for(var i = 0; i < mensaje.length; i++)
+            { 
+                //Recorremos el array del que partíamos para encriptar dado en la tarea. 
+                arrayAbc.forEach(letra => {
+                    if(mensaje.charAt(i) == letra)
+                    {
+                        //Por cada letra que coincida la sustituimos por una letra tantas posiciones indicadas más avanzada en la cadena.
+                        var posicion = arrayAbc.indexOf(letra);
+                        posicion += mueves;
+
+                        //Si la letra es mayor que la longitud de nuestro arrayAbc (25 si le restamos 1 porque el index empieza a contar desde 0...)
+                        if(posicion > 25)
+                        {
+                            posicion = posicion - 26;
+                        }
+                
+                        //Metemos en nuestro array con la palabra encriptada la nueva letra. 
+                        encriptado.push(arrayAbc[posicion]);
+                        //console.log(encriptado);
+                    }
+                });
+            }
+            //Unimos todas las letras del array en una sola cadena.
+            var resultado = encriptado.join("");
+            //console.log(resultado);
+            //Mostramos al usuario el resultado
+            var muestraResultado = document.getElementById('encriptaDesencripta');
+            muestraResultado.innerHTML = resultado;
+
+            
+        }
+
+        if (clickado == 'desencriptar')
+        {
+            console.log('Desencriptar clickado');
+            mensaje = document.getElementById('mensaje').value;
+
+            var mueves = parseInt(prompt('Indique, del 1 al 26, cuántas posiciones usó su encriptación'));
+
+            for(var i = 0; i < mensaje.length; i++)
+            { 
+                //Recorremos el array del que partíamos para encriptar dado en la tarea. 
+                arrayAbc.forEach(letra => {
+                    if(mensaje.charAt(i) == letra)
+                    {
+                        //Por cada letra que coincida la sustituimos por una letra tantas posiciones indicadas más atrasada en la cadena.
+                        var posicion = arrayAbc.indexOf(letra);
+                        posicion -= mueves;
+                        
+                        //Si la letra es menor que la longitud de nuestro arrayAbc (26 tenemos que tener en cuenta esta vez para empezar a restar desde ahí).
+                        if(posicion < 0)
+                        {
+                            posicion = 26 + posicion;
+                        }
+                
+                        //Metemos en nuestro array con la palabra desencriptada la nueva letra. 
+                        desencriptado.push(arrayAbc[posicion]);
+                        //console.log(desencriptado);
+                    }
+                });
+            }
+            //Unimos todas las letras del array en una sola cadena.
+            var resultado2 = desencriptado.join("");
+            //console.log(resultado2);
+
+            //Mostramos al usuario el resultado
+            var muestraResultado2 = document.getElementById('encriptaDesencripta');
+            muestraResultado2.innerHTML = resultado2;
+            
+        }
+    }
+
+    function limpiar()
+    {
+          //Limpiamos los arrays de encriptado y desencriptado. 
+          encriptado = [];
+          desencriptado = [];
+    }
+
+</script>
+
+</body>
+</html>

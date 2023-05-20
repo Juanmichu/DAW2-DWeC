@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWEC02 - Tarea 2 - Juan Manuel Serrano Pérez</title>
+</head>
+<body>
+    <style>
+        .flexBox
+        {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .tituloTabla
+        {
+            font-weight: 700;
+            font-size: 15px;
+            padding: 5px 7px;
+            margin: 5px;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #000;
+        }
+        .tabla
+        {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            margin: 5px 0;
+        }
+    </style>
+    <h1>Ejercicio 5</h1>
+
+        <div id="flexBox" class="flexBox"></div>
+
+    <script>
+        let numeroString = prompt("Introduzca un número para mostrar las tablas de multiplicar del 1 hasta este número");
+        let numero = parseInt(numeroString);
+       
+        for(let i = 1 ; i <= numero; i++)
+        {
+            let flex = document.createElement('div');
+            flex.setAttribute('id','tabla' + i);
+            flex.setAttribute('class','tituloTabla');
+
+            let tituloContenido = document.createTextNode("Tabla del " + i);
+            flex.appendChild(tituloContenido);
+
+            let titulo = document.getElementById('flexBox');
+            titulo.appendChild(flex);
+
+            for(let j = 1; j <= 10; j++)
+            {
+                let fila = document.createElement('p');
+                fila.setAttribute('id','tablaContent'+ i);
+                fila.setAttribute('class','tabla');
+
+                let filaContenido = document.createTextNode( i + " x " + j + " = " + i*j);
+                fila.appendChild(filaContenido);
+
+                let tablas = document.getElementById('tabla'+i);
+                tablas.appendChild(fila);
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Manuel Serrano Perez" />
+    <title>Tarea 3 - DEWC03</title>
+</head>
+<body>
+<style>
+    body
+    {
+        text-align: center;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<h1>Tarea 3 - DEWC03</h1>
+
+<p id="palabra"></p>
+
+<script>
+    //Busca una palabra con más de 10 caracteres.
+    var patron1 = /^[A-Za-zá-ú]{10,}$/;
+    //Busca si contiene 1 o más números en cualquier posición. 
+    var patron2 = /\d+/g;
+    //Comprobamos si existen espacios en blanco.
+    var patron3 = /\s+/g;
+    
+    do
+    {
+        var palabra = prompt('Introduzca una palabra de más de 10 caracteres sin incluir números.');
+
+        var comprobacion = patron1.test(palabra);
+        var compNumeros = patron2.test(palabra);
+        var compEspacios = patron3.test(palabra);
+        
+        //Si es cierto que tiene más de 10 caraceres y no contiene ningún número. Imprime por pantalla la palabra.
+        if(comprobacion && !compNumeros && !compEspacios)
+        {
+            var mensaje = document.getElementById('palabra');
+            mensaje.innerHTML = palabra.toUpperCase();
+        }else if(compNumeros)
+        {
+            alert('¡Ha introducido un número! Solo se pueden introducir palabras sin números.');
+        }else if(compEspacios)
+        {
+            alert('¡Ha introducido un espacio en blanco! Solo se puede introducir 1 palabra.');
+        }else 
+        {
+            alert('Ha introducido una palabra de menos de 10 caracteres. Vuelva a intentarlo.');
+        }
+    }while(!comprobacion || compNumeros)
+
+</script>
+</body>
+</html>

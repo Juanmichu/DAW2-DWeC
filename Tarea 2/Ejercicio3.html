@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWEC02 - Tarea 2 - Juan Manuel Serrano Pérez</title>
+</head>
+    <body>
+        <h1>Ejercicio 3</h1>
+
+        <div id="suma"></div>
+        
+        <script>
+            var numeros = prompt("Introduzca un número y le devolveré la suma de todos los números hasta su número");
+            
+            if(isNaN(numeros)) {
+
+                alert("¡El número introducido no es un número!");
+                let divSuma = document.getElementById("suma");
+    
+                divSuma.innerHTML = "Pulse F5 para volver a intentarlo";
+            
+            } else {
+
+                let suma = 0;
+
+                for(var i = 1; i <= numeros; i++)
+                {
+                    suma += i;
+                }
+    
+                let divSuma = document.getElementById("suma");
+    
+                divSuma.innerHTML = "La suma de todos los números es " + suma;    
+            }
+            
+           
+        </script>
+    </body>
+</html>

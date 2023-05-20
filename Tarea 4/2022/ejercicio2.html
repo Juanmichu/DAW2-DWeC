@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    
+    <script>
+        
+        var listaPalabras = new Array();
+        var patron = /[A-Z].*[A-Z]/;
+
+        function palabraLarga(unArray)
+        {
+            var arrayNumeros = new Array();
+            
+            unArray.forEach(element => {
+                
+                arrayNumeros.push(element.length);
+            });
+            
+            return arrayNumeros;
+        }
+
+        function mediaLongitud(otroArray)
+        {
+            var elementos = otroArray.length;
+            var suma = 0; 
+
+            otroArray.forEach(element =>{
+                
+                suma += element;
+            });
+            var media = Math.floor(suma/elementos);
+            return media;
+
+        }
+
+        do 
+        {
+            var palabrasUsuario = prompt('Introduzca palabras al azar con al menos 2 mayúsculas. No introduzca nada y pulse enter para continuar');
+            
+            var mayus = patron.test(palabrasUsuario);
+
+            if(palabrasUsuario != "" && mayus)
+            {
+                listaPalabras.push(palabrasUsuario); 
+
+            }else if(palabrasUsuario != "" && !mayus)
+            {
+                alert('ERROR : ¡La palabra introducida no tiene 2 mayúsculas!');
+            }       
+
+        }while (palabrasUsuario != "")
+
+        var longitudes = palabraLarga(listaPalabras);
+
+        document.write('<p>Primera palabra introducida: ' + listaPalabras[0]  + '</p>');
+        document.write('<p>Última palabra introducida: ' + listaPalabras.slice(-1)  + '</p>');
+        document.write('<p>Palabra más larga introducida: ' + Math.max(...palabraLarga(listaPalabras))  + '</p>');
+        document.write('<p>Media aritmética de las palabras introducidas redondeada a la baja: ' + (mediaLongitud(longitudes))  + '</p>');
+        
+    </script>
+</body>
+</html>

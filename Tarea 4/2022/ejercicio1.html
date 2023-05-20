@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+
+
+
+    <script>
+        var meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        var fecha = new Date();
+        
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth();
+        var anio = fecha.getFullYear();
+
+        function getMesNombre(mes)
+        {
+            var nombreMes;
+
+            nombreMes = meses[mes];
+
+            return nombreMes;
+        }
+
+        var nochevieja = (new Date(anio, 11, 31).getTime() /1000 /60 /60 /24);
+
+        var restantes = Math.floor(nochevieja - (fecha.getTime() /1000 /60 /60 /24)) ;
+
+        document.write('<h1>Estamos a ' + dia + ' de ' + getMesNombre(11) + ' de ' + anio + ', faltan ' + restantes + ' días para nochevieja.</h1>');
+    </script>
+</body>
+</html>

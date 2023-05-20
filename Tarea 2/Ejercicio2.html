@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWEC02 - Tarea 2 - Juan Manuel Serrano Pérez</title>
+</head>
+    <body>
+        <h1>Ejercicio 2</h1>
+
+        <div id="numeros"></div>
+        
+        <div id="mayor"></div>
+        
+        <script>
+            var numeros = [];
+            
+            //Pedimos al usuario que introduzca 4 números.
+            for(var i = 1; i < 4; i++)
+            {
+                numeros.push(prompt("Introduzca el número " + i));
+            }
+            
+            var divNumero = document.getElementById("numeros");
+            divNumero.innerHTML = "Los números introducidos han sido: " + numeros;
+
+            //Ordenamos los números de mayor a menor.
+            numeros.sort(function(a,b){return b-a});
+
+            var divMayor = document.getElementById("mayor");
+            divMayor.innerHTML = "El número más grande introducido ha sido el " + numeros[0];
+        </script>
+
+
+    </body>
+</html>

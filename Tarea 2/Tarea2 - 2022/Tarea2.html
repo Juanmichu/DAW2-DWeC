@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Manuel Serrano Perez" />
+    <title>Tarea 2 - DEWC03</title>
+</head>
+<body>
+<style>
+    body
+    {
+        text-align: center;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+    <h1>Tarea 2 - DEWC03</h1>
+
+    <p id="fecha">
+
+    </p>
+
+<script>
+    var patron1 = /^\d{2}\/\d{2}\/\d{2}$/;
+    var patron2 = /^\d{2}\s\d{2}\s\d{2}$/;
+    
+    do
+    {
+        var fecha = prompt('Introduzca una fecha en formato xx/xx/xx o xx xx xx');
+        barras = patron1.test(fecha);
+        espacios = patron2.test(fecha);
+
+        
+        console.log('patron1 ' + barras);
+        console.log('patron2 ' + espacios);
+        console.log(fecha);
+
+        if(barras || espacios)
+        {
+        var mensaje = document.getElementById('fecha');
+        mensaje.innerHTML = fecha;
+        }else
+        {
+            alert('ERROR: ¡Introduzca la fecha en formato xx/xx/xx o xx xx xx');
+        }
+    }while(!barras && !espacios)
+</script>
+</body>
+</html>

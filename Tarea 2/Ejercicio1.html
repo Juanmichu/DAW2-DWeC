@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWEC02 - Tarea 2 - Juan Manuel Serrano Pérez</title>
+</head>
+<body>
+    <h1>Ejercicio 1</h1>
+    
+    <div id="mensaje">
+        ¡Bienvenido! 
+    </div>
+    
+    <script>
+
+
+        var nombre = prompt('¿Cuál es tu nombre?');
+
+        var edad = prompt('¿Y tu edad?');
+
+        var mayoria = (edad > 18) ? 'mayor' : 'menor'; 
+
+        var mensaje = "Hola " + nombre + ",tienes " + edad + " años, eres " + mayoria + " de edad.";
+
+        var elemento = document.getElementById('mensaje');
+        elemento.innerHTML = mensaje;
+       
+        console.log(mensaje);
+        
+        console.log(elemento.innerHTML);
+
+        
+    </script>
+</body>
+</html>

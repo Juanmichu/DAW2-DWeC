@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    
+    <script>
+        class Curso
+        {
+            constructor(nombre, alumnos)
+            {
+                this.nombre = nombre;
+                this.alumnos = alumnos;
+                this.maximo = 10;
+            }
+
+            modificarMaximo(max)
+            {
+                this.maximo = max;
+            }
+
+            agregarAlumnos(alumno)
+            {
+                var error = false;
+                this.alumnos.forEach(element => {
+                    if(element[0] == alumno)
+                    {
+                        error=true;
+                        alert('Ese alumno ya existe');
+                    }
+                    else if(this.alumnos.length >= this.maximo)
+                    {
+                        error=true;
+                        alert('Se ha alcanzado el maximo de alumnos. No se pueden agregar más a este curso');
+                    }
+                });
+
+                if(error == false)
+                {
+                    this.alumnos.push([alumno, "-"]);
+                }
+               
+            }
+
+            agregarNota(alumno,nota)
+            {
+                var error = true;
+                this.alumnos.forEach(element => {
+                    if(element[0] == alumno)
+                    {
+                        element[1] = nota;
+                        error = false;
+                    }
+                });
+
+                if(error == true)
+                {
+                    alert('El alumno '+ alumno +' no existe');
+                }
+            }
+
+            listarAlumnos()
+            {
+               this.alumnos.forEach(element =>{
+                document.write('<p>' + element[0]+' : ' + element[1] + ' </p>');
+               });
+            }
+
+            eliminarAlumno(alumno)
+            {
+                this.alumnos.forEach(element =>{
+                    if(element[0] == alumno)
+                    {
+                        var position = this.alumnos.indexOf(element);
+                        this.alumnos.splice(position, 1);
+                    }
+                });
+            }
+
+            estadisticas()
+            {
+               
+                var maximo = new Array();
+                var maximaNota;
+                var suma = 0;
+                this.alumnos.forEach(element => 
+                {
+                    if(typeof element[1] == "number")
+                    {
+                        suma += element[1];
+                        maximo.push(element[1]);
+                    }
+
+                   
+                });
+
+                var media = Math.floor(suma / this.alumnos.length);
+                maximaNota = Math.max(...maximo);
+                document.write('<p>La media de este curso es de ' + media + '</p>');
+                document.write('<p>La máxima nota del curso es ' + maximaNota +'</p>');
+
+            }
+
+
+        }
+
+        var DAM = new Curso('DAM', [['Juan Manuel', 10 ], ['Clara', 10], ['Jose', 5]]);
+
+        console.log(DAM);
+        DAM.modificarMaximo(15);
+
+        console.log(DAM.maximo)
+
+        DAM.agregarAlumnos('David');
+
+        console.log(DAM.alumnos)
+
+        DAM.agregarNota('Juan Manuel', 9);
+
+        console.log(DAM.alumnos);
+
+        DAM.listarAlumnos();
+
+        DAM.eliminarAlumno('Clara');
+
+        console.log(DAM.alumnos);
+        DAM.estadisticas();
+
+    </script>
+</body>
+</html>

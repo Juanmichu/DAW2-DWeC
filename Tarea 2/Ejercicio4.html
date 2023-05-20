@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWEC02 - Tarea 2 - Juan Manuel Serrano Pérez</title>
+</head>
+<body>
+    <h1>Ejercicio 4</h1>
+
+    <div id="suma"></div>
+    <div id="contador"></div>
+    
+    <script>
+        let suma = null;
+        let contador = null;
+
+        while(suma <= 50)
+        {      
+            let numUsuario = prompt('Introduzca un número');
+            suma += parseInt(numUsuario);
+            contador++;
+        }
+
+        let divSuma = document.getElementById('suma');
+        divSuma.innerHTML = "<h2 style='color:red;'>La suma ha sobrepasado el número 50.</h2><p> La suma de todos los números es <b> " + suma + "</b></p>";
+
+        let divContador = document.getElementById('contador');
+        divContador.innerHTML = "Se han sumado <b>" + contador + "</b> números";
+
+    </script>
+    
+</body>
+</html>
