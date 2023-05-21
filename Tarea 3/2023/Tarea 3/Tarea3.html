@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Juan Manuel Serrano Perez" />
+  <title>Tarea 3 - DWeC03</title>
+</head>
+<body>
+<style>
+  body
+  {
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+</style>
+<h1>Tarea 3 - DWeC03</h1>
+
+<p id="code">
+
+</p>
+
+<script>
+  const patron1 = /^[0-9]{6}-[a-zA-Z]$/;
+
+  do {
+    let code      = prompt('Introduzca un código de 6 números y una letra siguiendo el formato nnnnnn-a.');
+    var codeIsOk  = patron1.test(code);
+
+
+    console.log('patron1 ' + codeIsOk);
+    console.log(code);
+
+    if(codeIsOk) {
+
+      let message         = document.getElementById('code');
+      message.innerHTML   = 'El código introducido ' + code + ' es correcto.';
+
+    } else {
+
+      alert('ERROR: ¡El formato introducido es incorrecto!');
+
+    }
+
+  } while(!codeIsOk)
+</script>
+</body>
+</html>
