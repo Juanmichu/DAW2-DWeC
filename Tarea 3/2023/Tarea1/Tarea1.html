@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Manuel Serrano Perez" />
+    <title>Tarea 1 - DEWC03</title>
+</head>
+<body>
+    <style>
+        body
+        {
+            text-align: center;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        button
+        {
+            padding: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 1px 5px #000;
+            border: 2px solid #0000007a;
+            cursor:pointer;
+            transition: .5s;
+        }
+        button:hover
+        {
+            transform: scale(1.05);
+            transition: .5s;
+        }
+    </style>
+    <h1>Tarea 1 - DEWC03</h1>
+    <button onclick="fechas()">
+        Ver fechas
+    </button>
+    
+    <script>
+        let configVentana = "width=600 height=400 chrome=yes";
+        function fechas()
+        {
+            window.open("./Fecha.html","Fecha", configVentana);
+        }
+    </script>
+</body>
+</html>

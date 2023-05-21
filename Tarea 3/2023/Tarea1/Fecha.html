@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Manuel Serrano Perez" />
+    <title>Tarea 1 - DEWC03</title>
+</head>
+<body>
+    <style>
+        body
+        {
+            text-align: center;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <h1>Tarea 1 - Mostrar fecha actual</h1>
+
+    <h2 id="fecha"></h2>
+
+    <script>
+        function comprobarTiempo()
+        {
+            let getFecha    = new Date();
+            let diaSemana   = getFecha.getDay();
+            let diaMes      = getFecha.getDate();
+            let mes         = getFecha.getMonth();
+            let year        = getFecha.getFullYear();
+
+            let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        
+            switch(diaSemana)
+            {
+                case 0: diaSemana = 'domingo'; break;
+                case 1: diaSemana = 'lunes'; break;
+                case 2: diaSemana = 'martes'; break;
+                case 3: diaSemana = 'miércoles'; break;
+                case 4: diaSemana = 'jueves'; break;
+                case 5: diaSemana = 'viernes'; break;
+                case 6: diaSemana = 'sábado'; break;
+            }
+            let horas = getFecha.getHours();
+            let minutos = getFecha.getMinutes();
+
+            //Convertimos este número de minutos en un entero con un mínimo de 2 cifras. Para cuando se muestren de 1 a 9 minutos aparezca un 0 en las decenas.
+            let minutosParse = new Intl.NumberFormat('es-ES', {minimumIntegerDigits:2}).format(minutos);
+            let hFecha = document.getElementById("fecha");
+            
+            hFecha.innerHTML = "Hoy es " + diaSemana + ", día " + diaMes + " de " + meses[mes] + " del año " + year + " y son las " + horas + " : " + minutosParse ;
+        }
+        
+        comprobarTiempo();
+
+        //Hacemos que nuestro reloj sea en tiempo real, comprobando la fecha actual cada segundo. 
+       setInterval( () => {
+           comprobarTiempo();
+       },1000)
+    </script>
+</body>
+</html>
