@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+<style>
+    #countDown {
+        text-align: center;
+        width: 25%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 700;
+        box-shadow: 0 1px 5px #000;
+        border: 2px solid #0000007a;
+        transition: .5s;
+    }
+</style>
+    
+<div id="countDown">
+
+</div>
+<script>
+    let userIncome  = prompt('Introduzca un nº');
+    let unitTipus   = prompt('Introduzca "S" para segundos, "M" para minutos y "H" para horas');
+
+    function finalCountDown(number, unit)
+    {
+
+        unit            = unit.toUpperCase();
+        let countDown   = 0;
+
+        // Pasamos el número introducido a la unidad pedida. Por defecto, vendrá dada en segundos.
+        // El interval usado son 1000 ms.
+        switch(unit)
+        {
+            case 'S':
+                countDown = number;
+                break;
+            case 'M':
+                countDown = number*60;
+                break;
+            case 'H':
+                countDown = number*1200;
+                break;
+        }
+
+         let timing = setInterval(() => {
+             // Imprimiremos dentro de un elemento html, sustituyendo el anterior elemento, en vez de hacer document.write, evitando un largo scroll al
+             // usuario en caso de ser una cuenta atrás larga.
+            document.getElementById('countDown').innerHTML = '<p>Faltan ' + countDown + ' segundos.</p>';
+            countDown--;
+
+            if(countDown <= 0) {
+                clearInterval(timing);
+                document.getElementById('countDown').innerHTML = '<p>Cuenta atrás finalizada</p>';
+            }
+         },1000);
+
+    }
+
+    finalCountDown(userIncome,unitTipus);
+</script>
+</body>
+</html>
