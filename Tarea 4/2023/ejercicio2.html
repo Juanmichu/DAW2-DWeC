@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    
+    <script>
+        
+        let wordList = [];
+        let regexp = /^[A-Z]+/;
+
+        function getWordsLength(wordList)
+        {
+            let arrayLengths = [];
+            
+            wordList.forEach(element => {
+                arrayLengths.push(element.length);
+            });
+            
+            return arrayLengths;
+        }
+
+        function getLongestWord(wordList)
+        {
+            let longestWord = '';
+
+            wordList.forEach( word => {
+                if(word.length > longestWord.length) {
+                    longestWord = word;
+                }
+            });
+
+            // console.log('Palabra más larga => ' + longestWord + ' con ' + longestWord.length + ' caracteres.');
+
+            return longestWord;
+        }
+
+        function getAverageToFloor(wordLengthsList)
+        {
+            let wordsNumber = wordLengthsList.length;
+            let sum = 0;
+
+            wordLengthsList.forEach(element =>{
+                sum += element;
+            });
+
+            // console.log('Número de palabras introducidas => ' + wordsNumber);
+            // console.log('Suma de todas las longitudes => ' + sum);
+
+            return Math.floor(sum / wordsNumber);
+
+        }
+
+        do {
+            var userIncome = prompt('Introduzca palabras al azar que comiencen por mayúscula. Una vez termine, deje el campo vacío y pulse Enter para continuar');
+            
+            let startsWithCapital = regexp.test(userIncome);
+
+            if(userIncome !== "" && startsWithCapital)
+            {
+                wordList.push(userIncome);
+
+            }else if(userIncome !== "" && !startsWithCapital)
+            {
+                alert('ERROR : ¡La palabra introducida no empieza por mayúsculas!');
+            }       
+
+        } while (userIncome !== "")
+
+        let wordLengths = getWordsLength(wordList);
+
+        document.write('<p>Primera palabra introducida: ' + wordList[0]  + '</p>');
+        document.write('<p>Última palabra introducida: ' + wordList.slice(-1)  + '</p>');
+        document.write('<p>Palabra más larga introducida: ' + getLongestWord(wordList)  + '</p>');
+        document.write('<p>Media aritmética de las palabras introducidas redondeada a la baja: ' + (getAverageToFloor(wordLengths))  + '</p>');
+        
+    </script>
+</body>
+</html>
