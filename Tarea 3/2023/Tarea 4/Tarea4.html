@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Manuel Serrano Perez" />
+    <title>Tarea 4 - DWeC03</title>
+</head>
+<body>
+<style>
+    body
+    {
+        text-align: center;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+<h1>Tarea 4 - DWeC03</h1>
+
+<p id="birthday">
+
+</p>
+
+<script>
+    const regexp1 = /^\d{2}\/\d{2}\/\d{2}$/;
+    const regexp2 = /^\d{2}-\d{2}-\d{2}$/;
+    let birthday  = localStorage.getItem('birthday');
+    let message = document.getElementById('birthday');
+
+    if(birthday === '' || birthday === null) {
+        do {
+
+            birthday = prompt('Introduce la fecha de tu cumpleaños en formato xx/xx/xx o xx-xx-xx');
+            var regex1IsOk = regexp1.test(birthday);
+            var regex2IsOk = regexp2.test(birthday);
+
+            console.log('patron barras  ' + regex1IsOk);
+            console.log('patron - ' + regex2IsOk);
+            console.log('Valores introducidos por usuario => ' + birthday);
+
+            if (regex1IsOk || regex2IsOk) {
+
+                message.innerHTML = 'Tu cumpleaños es el ' + birthday + '.';
+
+                // Guardamos el cumpleaños en el almacenamiento local.
+                localStorage.setItem('birthday', birthday);
+
+            } else {
+
+                alert('ERROR: ¡El formato introducido es incorrecto!');
+
+            }
+
+        } while (!regex1IsOk && !regex2IsOk);
+
+    } else {
+
+        message.innerHTML = 'Tu cumpleaños es el ' + birthday + '.';
+
+    }
+</script>
+</body>
+</html>
