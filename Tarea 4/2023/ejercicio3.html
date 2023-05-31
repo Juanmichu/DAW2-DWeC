@@ -57,7 +57,7 @@
             document.getElementById('countDown').innerHTML = '<p>Faltan ' + countDown + ' segundos.</p>';
             countDown--;
 
-            if(countDown <= 0) {
+            if(countDown <= -1) {
                 clearInterval(timing);
                 document.getElementById('countDown').innerHTML = '<p>Cuenta atrás finalizada</p>';
             }
