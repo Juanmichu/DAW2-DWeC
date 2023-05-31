@@ -27,17 +27,17 @@
             return nombreMes;
         }
 
-        let nochevieja = (new Date(anio, 3, 10).getTime() /1000 /60 /60 /24);
+        let finCurso = (new Date(anio, 3, 10).getTime() /1000 /60 /60 /24);
 
-        let restantes = Math.floor(nochevieja - (fecha.getTime() /1000 /60 /60 /24)) ;
+        let restantes = Math.floor(finCurso - (fecha.getTime() /1000 /60 /60 /24)) ;
 
         if(restantes > 0) {
 
-            document.write('<h1>Estamos a ' + dia + ' de ' + getMesNombre(11) + ' de ' + anio + ', faltan ' + restantes + ' días para fin de curso.</h1>');
+            document.write('<h1>Estamos a ' + dia + ' de ' + getMesNombre(mes) + ' de ' + anio + ', faltan ' + restantes + ' días para fin de curso.</h1>');
 
         } else {
 
-            document.write('<h1>Estamos a ' + dia + ' de ' + getMesNombre(11) + ' de ' + anio + ', han pasado ' + restantes * (-1) + ' días desde el fin de curso.</h1>');
+            document.write('<h1>Estamos a ' + dia + ' de ' + getMesNombre(mes) + ' de ' + anio + ', han pasado ' + restantes * (-1) + ' días desde el fin de curso.</h1>');
 
         }
     </script>
