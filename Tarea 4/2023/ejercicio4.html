@@ -7,14 +7,40 @@
     <title>Ejercicio 4</title>
 </head>
 <body>
+<style>
+    #listado_alumnos {
+        text-align: center;
+        width: 25%;
+        margin: auto;
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 700;
+        box-shadow: 0 1px 5px #000;
+        border: 2px solid #0000007a;
+        background-color: rgba(214, 255, 255, 0.78);
+        transition: .5s;
+    }
+    .box {
+        text-align: center;
+        margin: 15px auto;
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 700;
+        box-shadow: 0 1px 5px #000;
+        border: 2px solid #0000007a;
+        background-color: rgba(229, 229, 229, 0.88);
+        transition: .5s;
+    }
+</style>
+<div id="listado_alumnos"></div>
     
     <script>
         class Curso
         {
-            constructor(nombre, alumnos)
+            constructor(nombre)
             {
                 this.nombre = nombre;
-                this.alumnos = alumnos;
+                this.alumnos = [];
                 this.maximo = 10;
             }
 
@@ -23,7 +49,7 @@
                 this.maximo = max;
             }
 
-            agregarAlumnos(alumno)
+            agregarAlumnos(alumno, nota = '-')
             {
                 let error = false;
                 this.alumnos.forEach(element => {
@@ -41,7 +67,7 @@
 
                 if(error === false)
                 {
-                    this.alumnos.push([alumno, "-"]);
+                    this.alumnos.push([alumno, nota]);
                 }
                
             }
@@ -65,9 +91,11 @@
 
             listarAlumnos()
             {
-               this.alumnos.forEach(element =>{
-                document.write('<p>' + element[0]+' : ' + element[1] + ' </p>');
-               });
+                let listado = document.getElementById('listado_alumnos');
+                listado.innerHTML = '';
+                this.alumnos.forEach(element =>{
+                    listado.innerHTML += '<p>' + element[0]+' : ' + element[1] + ' </p>';
+                });
             }
 
             eliminarAlumno(alumno)
@@ -75,7 +103,7 @@
                 this.alumnos.forEach(element =>{
                     if(element[0] === alumno)
                     {
-                        var position = this.alumnos.indexOf(element);
+                        let position = this.alumnos.indexOf(element);
                         this.alumnos.splice(position, 1);
                     }
                 });
@@ -100,35 +128,58 @@
 
                 let media = Math.floor(suma / this.alumnos.length);
                 maximaNota = Math.max(...maximo);
-                document.write('<p>La media de este curso es de ' + media + '</p>');
-                document.write('<p>La máxima nota del curso es ' + maximaNota +'</p>');
+
+                console.log('MEDIA: ' + suma + ' / ' + this.alumnos.length);
+
+                let mediaDiv = document.createElement('div');
+                    mediaDiv.setAttribute('class', 'box');
+                    mediaDiv.appendChild(document.createTextNode('La media de este curso es de ' + media + '.'));
+
+                let maxDiv   = document.createElement('div');
+                    maxDiv.setAttribute('class', 'box');
+                    maxDiv.appendChild(document.createTextNode('La máxima nota del curso es ' + maximaNota +'.'));
+
+                let listadoDiv = document.getElementById('listado_alumnos');
+                listadoDiv.after(mediaDiv);
+                listadoDiv.after(maxDiv);
 
             }
 
 
         }
 
-        let DAM = new Curso('DAM', [['Juan Manuel', 10 ], ['Clara', 10], ['Jose', 5]]);
+        let DAM = new Curso('DAM');
+        console.log('CURSO ==> ' + JSON.stringify(DAM));
 
-        console.log(DAM);
+        setTimeout(DAM.modificarMaximo(15), 2000);
         DAM.modificarMaximo(15);
+        console.log('MAXIMO MODIFICADO ==> ' + JSON.stringify(DAM.maximo))
 
-        console.log(DAM.maximo)
-
+        // Probamos nuestro método agregar alumnos añadiendo nota o no.
+        DAM.agregarAlumnos('Juan Manuel', 9);
+        DAM.agregarAlumnos('Clara');
+        DAM.agregarAlumnos('Jose Antonio', 5);
         DAM.agregarAlumnos('David');
+        console.log('ALUMNOS AGREGADOS ==> ' + JSON.stringify(DAM.alumnos))
 
-        console.log(DAM.alumnos)
+        setTimeout(2000);
+        // Agregamos algunas notas a los alumnos que no tienen.
+        DAM.agregarNota('Clara', 10);
+        DAM.agregarNota('David', 7);
+        console.log('AÑADIENDO NOTAS ==> ' + JSON.stringify(DAM.alumnos));
 
-        DAM.agregarNota('Juan Manuel', 9);
+        setTimeout(2000);
+        DAM.listarAlumnos();
+        console.log('LISTADO ALUMNOS ANTES DE ELIMINAR ==> ' + JSON.stringify(DAM.alumnos));
 
-        console.log(DAM.alumnos);
-
+        setTimeout(2000);
+        DAM.eliminarAlumno('David');
+        console.log('LISTADO ALUMNOS DESPUÉS DE ELIMINAR ==> ' + JSON.stringify(DAM.alumnos));
         DAM.listarAlumnos();
 
-        DAM.eliminarAlumno('Clara');
-
-        console.log(DAM.alumnos);
+        setTimeout(2000);
         DAM.estadisticas();
+        console.log('MOSTRANDO ESTADISTICAS');
 
     </script>
 </body>
