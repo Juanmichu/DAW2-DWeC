@@ -1,0 +1,54 @@
+#visor {
+    text-align: center;
+}
+#imagenes {
+    min-height: 30em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#boton-add-imagen {
+    text-align: center;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 1px 5px #000;
+    border: 2px solid #0000007a;
+    background-color: rgba(229, 229, 229, 0.88);
+    transition: .5s;
+}
+#boton-add-imagen:hover {
+    color: #1e9bff;
+    border: 2px solid rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 #1e9bff;
+    transition: .5s;
+}
+#boton-add-imagen:active {
+    color: white;
+    background-color: #1e9bff;
+    border: 2px solid rgba(100, 100, 100, 0);
+    box-shadow: 0 0 0 rgba(185, 185, 185, 0.76);
+    transition: 0s;
+}
+#boton-add-imagen:disabled {
+    color: #a4a4a4;
+    background-color: lightgray;
+    box-shadow: none;
+    border: none;
+}
+.imagen-div {
+    display: none;
+    opacity: 0;
+    transition: .5s;
+}
+.imagen-div.active {
+    display: block;
+    opacity: 1;
+    transition: .5s;
+}
+img {
+    width: 100%;
+    max-width: 450px;
+    object-fit: cover;
+}
